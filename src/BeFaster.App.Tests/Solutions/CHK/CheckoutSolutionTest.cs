@@ -8,16 +8,15 @@ namespace BeFaster.App.Tests.Solutions.CHK
     public class CheckoutSolutionTest
     {
         [Test]
-        public void WhenPassedAnEmptyString_ReturnIllegalInput()
+        public void WhenPassedAnEmptyString_ReturnZero()
         {
             var result = CheckoutSolution.ComputePrice("");
 
-            Assert.AreEqual(CheckoutSolution.IllegalInput, result);
+            Assert.AreEqual(0, result);
         }
 
 
         [TestCase(null, ExpectedResult = CheckoutSolution.IllegalInput)]
-        [TestCase("", ExpectedResult = CheckoutSolution.IllegalInput)]
         [TestCase("Z", ExpectedResult = CheckoutSolution.IllegalInput)]
         [TestCase("AZ", ExpectedResult = CheckoutSolution.IllegalInput)]
         public int WhenPassedAnUnknownSku_ReturnIllegalInput(string skus)
@@ -53,5 +52,6 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
 
