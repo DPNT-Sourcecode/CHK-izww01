@@ -41,8 +41,18 @@ namespace BeFaster.App.Tests.Solutions.SUM
         {
             return CheckoutSolution.ComputePrice(skus);
         }
+
+        [TestCase("AAA", ExpectedResult = 130)]
+        [TestCase("AAAA", ExpectedResult = 180)]
+        [TestCase("BB", ExpectedResult = 45)]
+        [TestCase("AAABB", ExpectedResult = 175)]
+        public int WhenPassedMutipleSkusWithDiscounts_ReturnTotalValueWithDiscountApplied(string skus)
+        {
+            return CheckoutSolution.ComputePrice(skus);
+        }
     }
 }
+
 
 
 

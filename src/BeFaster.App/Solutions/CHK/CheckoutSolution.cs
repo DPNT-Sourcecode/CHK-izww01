@@ -31,7 +31,7 @@ namespace BeFaster.App.Solutions.CHK
             var total = 0;
             foreach (var skuList in stockItemGroupsBySku)
             {
-                var stockItem = _stockItemsList.FirstOrDefault( si => si.StockKeepingUnit == skuList.Key);
+                var stockItem = _stockItemsList.FirstOrDefault(sku => sku.StockKeepingUnit == skuList.Key.ToString());
                 if (stockItem == null)
                 {
                     return IllegalInput;
@@ -43,6 +43,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
