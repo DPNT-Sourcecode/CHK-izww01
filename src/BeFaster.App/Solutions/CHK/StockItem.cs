@@ -28,7 +28,3 @@ namespace BeFaster.App.Solutions.CHK
         public List<FreeItem> FreeItemList { get; set; } = new List<FreeItem>();
     }
 }
-
-
-
-
