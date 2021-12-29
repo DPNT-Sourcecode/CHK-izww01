@@ -48,26 +48,30 @@ namespace BeFaster.App.Solutions.CHK
                 {
                     return IllegalInput;
                 }
-                var numberDiscounted = GetNumberOfDiscountedItems(skuList.Count(), stockItem.DiscountNumber);
-                var numberFullPrice = skuList.Count() - (numberDiscounted * stockItem.DiscountNumber ?? 0);
-                var totalx = (numberDiscounted * stockItem.DiscountPrice.Value) + (numberFullPrice * stockItem.Price);
-                total = totalx + total;                
+                total = CalculateSkuTotalWithDiscount(skuList, stockItem) + total;
             }
 
             return total;
         }
 
-        private static int GetNumberOfDiscountedItems(int skuListCount, int? discountNumber)
+        private static int CalculateSkuTotalWithDiscount(IGrouping<char, char> skuList, StockItem stockItem)
         {
-            if (!discountNumber.HasValue)
-            {
-                return 0;
-            }
-            var discounted = Math.Floor(skuListCount / (double)discountNumber.Value);
+            var discountedNumber = stockItem.DiscountNumber ?? 0;
+            var discountPrice = stockItem.DiscountPrice ?? 0;
+            var numberDiscounted = GetNumberOfDiscountedItems(skuList.Count(), discountedNumber);
+            var numberFullPrice = skuList.Count() - (numberDiscounted * discountedNumber);
+            var totalx = (numberDiscounted * discountPrice) + (numberFullPrice * stockItem.Price);
+            return totalx;
+        }
+
+        private static int GetNumberOfDiscountedItems(int skuListCount, int discountNumber)
+        {
+            var discounted = Math.Floor(skuListCount / (double)discountNumber);
             return (int)discounted;
         }
     }
 }
+
 
 
 
