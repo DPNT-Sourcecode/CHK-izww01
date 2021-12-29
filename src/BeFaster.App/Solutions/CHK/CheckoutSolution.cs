@@ -44,7 +44,9 @@ namespace BeFaster.App.Solutions.CHK
                 StockKeepingUnit = "E",
                 PricePerQuantityList = new List<PricePerQuantity>{
                     new PricePerQuantity { Number = 1, Price = 40 }
-                }
+                },
+                FreeItemNumber = 2,
+                FreeItemSKU = "B"
             },
         };
 
@@ -72,7 +74,7 @@ namespace BeFaster.App.Solutions.CHK
                 var stockItem = _stockItemsList.FirstOrDefault(sku => sku.StockKeepingUnit == skuList.Key.ToString());
                 if (stockItem?.FreeItemNumber != null)
                 {
-                    var freeStockItem = _stockItemsList.FirstOrDefault(sku => sku.FreeItemSKU == skuList.Key.ToString());
+                    var freeStockItem = _stockItemsList.FirstOrDefault(sku => stockItem.FreeItemSKU == skuList.Key.ToString());
                     var numberOfFreeItems = GetNumberOfItemsToPrice(skuList.Count(), freeStockItem.FreeItemNumber.Value);
                     skusListWithFreeItemsRemoves = RemoveChars(skusListWithFreeItemsRemoves, freeStockItem.FreeItemSKU, numberOfFreeItems);
                 }
@@ -130,5 +132,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
