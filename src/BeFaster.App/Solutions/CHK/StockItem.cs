@@ -18,9 +18,10 @@ namespace BeFaster.App.Solutions.CHK
 
         public List<PricePerQuantity> PricePerQuantityList { get; set; } = new List<PricePerQuantity>();
              
-        public int FreeItemNumber { get; set; }
+        public int? FreeItemNumber { get; set; }
 
         public string FreeItemSKU { get; set; }
     }
 }
+
 

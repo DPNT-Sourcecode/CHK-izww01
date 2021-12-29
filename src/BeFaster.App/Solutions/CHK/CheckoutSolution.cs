@@ -70,10 +70,12 @@ namespace BeFaster.App.Solutions.CHK
             foreach (var skuList in stockItemGroupsBySku)
             {
                 var stockItem = _stockItemsList.FirstOrDefault(sku => sku.StockKeepingUnit == skuList.Key.ToString());
-                var freeStockItem = _stockItemsList.FirstOrDefault(sku => sku.FreeItemSKU == skuList.Key.ToString());
-                var numberOfFreeItems = GetNumberOfItemsToPrice(skuList.Count(), freeStockItem.FreeItemNumber);
-
-                skusListWithFreeItemsRemoves = RemoveChars(skusListWithFreeItemsRemoves, freeStockItem.FreeItemSKU, numberOfFreeItems);
+                if (stockItem?.FreeItemNumber != null)
+                {
+                    var freeStockItem = _stockItemsList.FirstOrDefault(sku => sku.FreeItemSKU == skuList.Key.ToString());
+                    var numberOfFreeItems = GetNumberOfItemsToPrice(skuList.Count(), freeStockItem.FreeItemNumber.Value);
+                    skusListWithFreeItemsRemoves = RemoveChars(skusListWithFreeItemsRemoves, freeStockItem.FreeItemSKU, numberOfFreeItems);
+                }
             }
 
             return CalculateTotalPriceForSingleSku(skusListWithFreeItemsRemoves.GroupBy(s => s));
@@ -128,4 +130,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
