@@ -10,8 +10,8 @@ namespace BeFaster.App.Solutions.CHK
 
         private static readonly List<StockItem> _stockItemsList = new List<StockItem>
         {
-            new StockItem { StockKeepingUnit = "A", Price = 50 },
-            new StockItem { StockKeepingUnit = "B", Price = 30 },
+            new StockItem { StockKeepingUnit = "A", Price = 50, DiscountAmount = 3, DiscountPrice = 130 },
+            new StockItem { StockKeepingUnit = "B", Price = 30, DiscountAmount = 2, DiscountPrice = 45 },
             new StockItem { StockKeepingUnit = "C", Price = 20 },
             new StockItem { StockKeepingUnit = "D", Price = 15 },
         };
@@ -22,12 +22,23 @@ namespace BeFaster.App.Solutions.CHK
             {
                 return IllegalInput;
             }
+
+            return CalculateTotalPrice(skus);
+        }
+
+        private static int CalculateTotalPrice(string skus)
+        {
             var stockItemGroupsBySku = skus.GroupBy(s => s);
             if (stockItemGroupsBySku == null)
             {
                 return IllegalInput;
             }
 
+            return CalculateTotalPriceForSingleSku(stockItemGroupsBySku);
+        }
+
+        private static int CalculateTotalPriceForSingleSku(IEnumerable<IGrouping<char, char>> stockItemGroupsBySku)
+        {         
             var total = 0;
             foreach (var skuList in stockItemGroupsBySku)
             {
@@ -43,6 +54,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
