@@ -15,12 +15,13 @@ namespace BeFaster.App.Tests.Solutions.SUM
             Assert.AreEqual(CheckoutSolution.IllegalInput, result);
         }
 
-        [Test]
-        public void WhenPassedAnUnknownSku_ReturnIllegalInput()
-        {
-            var result = CheckoutSolution.ComputePrice("Z");
 
-            Assert.AreEqual(CheckoutSolution.IllegalInput, result);
+        [TestCase("", ExpectedResult = CheckoutSolution.IllegalInput)]
+        [TestCase("Z", ExpectedResult = CheckoutSolution.IllegalInput)]
+        [TestCase("AZ", ExpectedResult = CheckoutSolution.IllegalInput)]
+        public int WhenPassedAnUnknownSku_ReturnIllegalInput(string skus)
+        {
+            return CheckoutSolution.ComputePrice(skus);
         }
 
         [TestCase("A", ExpectedResult = 50)]
@@ -35,10 +36,11 @@ namespace BeFaster.App.Tests.Solutions.SUM
         [TestCase("AA", ExpectedResult = 100)]
         [TestCase("AB", ExpectedResult = 80)]
         [TestCase("AABCCC", ExpectedResult = 190)]        
-        public int WhenPassedMutipleSkus_ReturnTotalValue(string sku)
+        public int WhenPassedMutipleSkus_ReturnTotalValue(string skus)
         {
-            return CheckoutSolution.ComputePrice(sku);
+            return CheckoutSolution.ComputePrice(skus);
         }
     }
 }
+
 
