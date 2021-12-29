@@ -53,6 +53,7 @@ namespace BeFaster.App.Solutions.CHK
                     var numberDiscounted = GetNumberOfDiscountedItems(skuList.Count(), stockItem.DiscountAmount);
                     var numberFullPrice = skuList.Count() - numberDiscounted;
                     var totalx = (numberDiscounted * stockItem.DiscountPrice) + (numberFullPrice * stockItem.Price);
+                    total = totalx + total;
                 }
                 else
                 {
@@ -70,3 +71,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+

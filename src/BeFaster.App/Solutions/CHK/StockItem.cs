@@ -6,8 +6,9 @@
 
         public int Price { get; set; }
 
-        public int DiscountAmount { get; set; }
+        public int? DiscountAmount { get; set; }
 
-        public int DiscountPrice { get; set; }
+        public int? DiscountPrice { get; set; }
     }
 }
+

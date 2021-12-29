@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System;
 
-namespace BeFaster.App.Tests.Solutions.SUM
+namespace BeFaster.App.Tests.Solutions.CHK
 {
     [TestFixture]
     public class CheckoutSolutionTest
@@ -52,3 +52,4 @@ namespace BeFaster.App.Tests.Solutions.SUM
         }
     }
 }
+
