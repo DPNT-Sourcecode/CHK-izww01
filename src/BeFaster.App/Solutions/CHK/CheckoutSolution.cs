@@ -95,6 +95,17 @@ namespace BeFaster.App.Solutions.CHK
                 numberPriced += (numberToPrice * pricePerQuantity.Number);
             }
 
+            var numberFreeItemsPriced = 0;
+            var freeItemsTotal = 0;
+            foreach (var freeItem in stockItem.FreeItemList)
+            {
+                var numberToPrice = GetNumberOfItemsToPrice(skuList.Count() - numberPriced, freeItem.Number);
+                var freeItemSku = _stockItemsList.First(s => s.StockKeepingUnit == freeItem.SKU);
+                var totalPrice = freeItemSku.Price * freeItem.Number;
+                freeItemsTotal += totalPrice;
+                numberFreeItemsPriced += (numberToPrice * freeItem.Number);
+            }
+
             return runningTotal;
         }
 
@@ -105,3 +116,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
