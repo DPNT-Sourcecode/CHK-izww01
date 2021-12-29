@@ -14,7 +14,7 @@ namespace BeFaster.App.Solutions.CHK
         private static readonly List<StockItem> _stockItemsList = new List<StockItem>
         {
             new StockItem {
-                StockKeepingUnit = "A",
+                SKU = "A",
                 PricePerQuantityList = new List<PricePerQuantity>{
                     new PricePerQuantity { Number = 1, Price = 50 },
                     new PricePerQuantity { Number = 3, Price = 130 },
@@ -22,26 +22,26 @@ namespace BeFaster.App.Solutions.CHK
                 },
             },
             new StockItem {
-                StockKeepingUnit = "B",
+                SKU = "B",
                 PricePerQuantityList = new List<PricePerQuantity>{ 
                     new PricePerQuantity { Number = 1, Price = 30 },
                     new PricePerQuantity { Number = 2, Price = 45 }
                 }
             },
             new StockItem {
-                StockKeepingUnit = "C",
+                SKU = "C",
                 PricePerQuantityList = new List<PricePerQuantity>{
                     new PricePerQuantity { Number = 1, Price = 20 }
                 }
             },
             new StockItem {
-                StockKeepingUnit = "D",
+                SKU = "D",
                 PricePerQuantityList = new List<PricePerQuantity>{
                     new PricePerQuantity { Number = 1, Price = 15 }
                 }
             },
             new StockItem {
-                StockKeepingUnit = "E",
+                SKU = "E",
                 PricePerQuantityList = new List<PricePerQuantity>{
                     new PricePerQuantity { Number = 1, Price = 40 }
                 },
@@ -71,12 +71,12 @@ namespace BeFaster.App.Solutions.CHK
             var skusListWithFreeItemsRemoves = skus;
             foreach (var skuList in stockItemGroupsBySku)
             {
-                var stockItem = _stockItemsList.FirstOrDefault(sku => sku.StockKeepingUnit == skuList.Key.ToString());
+                var stockItem = _stockItemsList.FirstOrDefault(si => si.SKU == skuList.Key.ToString());
                 if (stockItem?.FreeItemNumber != null)
                 {
-                    var freeStockItem = _stockItemsList.FirstOrDefault(sku => stockItem.FreeItemSKU == skuList.Key.ToString());
-                    var numberOfFreeItems = GetNumberOfItemsToPrice(skuList.Count(), freeStockItem.FreeItemNumber.Value);
-                    skusListWithFreeItemsRemoves = RemoveChars(skusListWithFreeItemsRemoves, freeStockItem.FreeItemSKU, numberOfFreeItems);
+                    var freeStockItem = _stockItemsList.FirstOrDefault(si => stockItem.FreeItemSKU == si.SKU);
+                    var numberOfFreeItems = GetNumberOfItemsToPrice(skuList.Count(), stockItem.FreeItemNumber.Value);
+                    skusListWithFreeItemsRemoves = RemoveChars(skusListWithFreeItemsRemoves, stockItem.FreeItemSKU, numberOfFreeItems);
                 }
             }
 
@@ -89,7 +89,7 @@ namespace BeFaster.App.Solutions.CHK
 
             foreach (var skuList in stockItemGroupsBySku)
             {
-                var stockItem = _stockItemsList.FirstOrDefault(sku => sku.StockKeepingUnit == skuList.Key.ToString());
+                var stockItem = _stockItemsList.FirstOrDefault(sku => sku.SKU == skuList.Key.ToString());
                 if (stockItem == null)
                 {
                     return IllegalInput;
@@ -132,6 +132,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 

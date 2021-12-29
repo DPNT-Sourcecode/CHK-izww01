@@ -12,7 +12,7 @@ namespace BeFaster.App.Solutions.CHK
 
     public class StockItem
     {
-        public string StockKeepingUnit { get; set; }
+        public string SKU { get; set; }
 
         public int Price { get; set; }
 
@@ -23,5 +23,6 @@ namespace BeFaster.App.Solutions.CHK
         public string FreeItemSKU { get; set; }
     }
 }
+
 
 
