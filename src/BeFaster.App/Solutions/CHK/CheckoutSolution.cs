@@ -13,6 +13,7 @@ namespace BeFaster.App.Solutions.CHK
         {
             new StockItem {
                 StockKeepingUnit = "A",
+                Price = 50,
                 Discounts = new List<Discount>{
                     new Discount { DiscountNumber = 3, DiscountPrice = 130 },
                     new Discount { DiscountNumber = 5, DiscountPrice = 200 }
@@ -89,4 +90,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
