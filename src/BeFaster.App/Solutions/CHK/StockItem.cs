@@ -23,6 +23,3 @@ namespace BeFaster.App.Solutions.CHK
         public string FreeItemSKU { get; set; }
     }
 }
-
-
-
