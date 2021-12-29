@@ -3,11 +3,11 @@
 namespace BeFaster.App.Solutions.CHK
 {
 
-    public class Discount
+    public class PricePerQuantity
     {
-        public int? DiscountNumber { get; set; }
+        public int? Number { get; set; }
 
-        public int? DiscountPrice { get; set; }
+        public int? Price { get; set; }
     }
 
     public class StockItem
@@ -17,8 +17,9 @@ namespace BeFaster.App.Solutions.CHK
         public int Price { get; set; }
 
 
-        public List<Discount> Discounts { get; set; } = new List<Discount>();
+        public List<PricePerQuantity> PricePerQuantityList { get; set; } = new List<PricePerQuantity>();
     }
 }
+
 
 

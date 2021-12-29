@@ -13,20 +13,31 @@ namespace BeFaster.App.Solutions.CHK
         {
             new StockItem {
                 StockKeepingUnit = "A",
-                Price = 50,
-                Discounts = new List<Discount>{
-                    new Discount { DiscountNumber = 1, DiscountPrice = 50 },
-                    new Discount { DiscountNumber = 3, DiscountPrice = 130 },
-                    new Discount { DiscountNumber = 5, DiscountPrice = 200 }
+                PricePerQuantityList = new List<PricePerQuantity>{
+                    new PricePerQuantity { Number = 1, Price = 50 },
+                    new PricePerQuantity { Number = 3, Price = 130 },
+                    new PricePerQuantity { Number = 5, Price = 200 }
                 },
             },
             new StockItem {
                 StockKeepingUnit = "B",
-                Price = 30,
-                Discounts = new List<Discount>{ new Discount { DiscountNumber = 2, DiscountPrice = 45 } }
+                PricePerQuantityList = new List<PricePerQuantity>{ 
+                    new PricePerQuantity { Number = 1, Price = 30 },
+                    new PricePerQuantity { Number = 2, Price = 45 }
+                }
             },
-            new StockItem { StockKeepingUnit = "C", Price = 20 },
-            new StockItem { StockKeepingUnit = "D", Price = 15 },
+            new StockItem {
+                StockKeepingUnit = "C",
+                PricePerQuantityList = new List<PricePerQuantity>{
+                    new PricePerQuantity { Number = 1, Price = 20 }
+                }
+            },
+            new StockItem {
+                StockKeepingUnit = "D",
+                PricePerQuantityList = new List<PricePerQuantity>{
+                    new PricePerQuantity { Number = 1, Price = 15 }
+                }
+            },
         };
 
         public static int ComputePrice(string skus)
@@ -69,28 +80,29 @@ namespace BeFaster.App.Solutions.CHK
         private static int CalculateSkuTotalWithDiscount(IGrouping<char, char> skuList, StockItem stockItem)
         {
             var numberPriced = 0;
-            var discountedTotal = 0;
-            foreach (var discount in stockItem.Discounts.OrderByDescending(d => d.DiscountPrice))
+            var runningTotal = 0;
+            foreach (var pricePerQuantity in stockItem.PricePerQuantityList.OrderByDescending(d => d.Price))
             {
-                var discountedNumber = discount.DiscountNumber ?? 0;
-                var discountPrice = discount.DiscountPrice ?? 0;
-                var numberOfDiscounts = GetNumberOfDiscountedItems(skuList.Count() - numberPriced, discountedNumber);
-                var price = numberOfDiscounts * discountPrice;
-                discountedTotal += price;
-                numberPriced += (numberOfDiscounts * discountedNumber);
+                var number = pricePerQuantity.Number ?? 0;
+                var price = pricePerQuantity.Price ?? 0;
+                var numberToPrice = GetNumberOfItemsToPrice(skuList.Count() - numberPriced, number);
+                var totalPrice = numberToPrice * price;
+                runningTotal += price;
+                numberPriced += (numberToPrice * number);
             }
             
             var numberFullPrice = skuList.Count() - numberPriced;
-            return discountedTotal + (numberFullPrice * stockItem.Price);            
+            return runningTotal + (numberFullPrice * stockItem.Price);            
         }
 
-        private static int GetNumberOfDiscountedItems(int skuListCount, int discountNumber)
+        private static int GetNumberOfItemsToPrice(int skuListCount, int numberOfItems)
         {
-            var discounted = Math.Floor(skuListCount / (double)discountNumber);
+            var discounted = Math.Floor(skuListCount / (double)numberOfItems);
             return (int)discounted;
         }
     }
 }
+
 
 
 
