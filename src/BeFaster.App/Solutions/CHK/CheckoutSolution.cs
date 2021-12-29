@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text.RegularExpressions;
 
 namespace BeFaster.App.Solutions.CHK
 {
@@ -123,15 +124,15 @@ namespace BeFaster.App.Solutions.CHK
 
         private static string RemoveChars(string originalString, string charToRemove, int count)
         {
-            var newString = originalString;
-            foreach(var _ in Enumerable.Range(1, count))
-            {
-                newString = originalString.Replace(charToRemove, "");
-            }
-            return newString;
+            var pattern = $"[{charToRemove}]";
+            var replacement = " ";
+
+            var regEx = new Regex(pattern);
+            return Regex.Replace(regEx.Replace(originalString, replacement), @"\s+", " ");
         }
     }
 }
+
 
 
 
