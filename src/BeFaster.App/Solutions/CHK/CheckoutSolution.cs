@@ -22,7 +22,7 @@ namespace BeFaster.App.Solutions.CHK
             {
                 return IllegalInput;
             }
-            var stockItemGroupsBySku = _stockItemsList.GroupBy(s => s.StockKeepingUnit);
+            var stockItemGroupsBySku = skus.GroupBy(s => s);
             if (stockItemGroupsBySku == null)
             {
                 return IllegalInput;
@@ -43,5 +43,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
