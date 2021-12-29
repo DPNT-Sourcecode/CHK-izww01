@@ -11,8 +11,18 @@ namespace BeFaster.App.Solutions.CHK
 
         private static readonly List<StockItem> _stockItemsList = new List<StockItem>
         {
-            new StockItem { StockKeepingUnit = "A", Price = 50, DiscountNumber = 3, DiscountPrice = 130 },
-            new StockItem { StockKeepingUnit = "B", Price = 30, DiscountNumber = 2, DiscountPrice = 45 },
+            new StockItem {
+                StockKeepingUnit = "A",
+                Discounts = new List<Discount>{
+                    new Discount { DiscountNumber = 3, DiscountPrice = 130 },
+                    new Discount { DiscountNumber = 5, DiscountPrice = 200 }
+                },
+            },
+            new StockItem {
+                StockKeepingUnit = "B",
+                Price = 30,
+                Discounts = new List<Discount>{ new Discount { DiscountNumber = 2, DiscountPrice = 45 } }
+            },
             new StockItem { StockKeepingUnit = "C", Price = 20 },
             new StockItem { StockKeepingUnit = "D", Price = 15 },
         };
@@ -56,11 +66,20 @@ namespace BeFaster.App.Solutions.CHK
 
         private static int CalculateSkuTotalWithDiscount(IGrouping<char, char> skuList, StockItem stockItem)
         {
-            var discountedNumber = stockItem.DiscountNumber ?? 0;
-            var discountPrice = stockItem.DiscountPrice ?? 0;
-            var numberDiscounted = GetNumberOfDiscountedItems(skuList.Count(), discountedNumber);
-            var numberFullPrice = skuList.Count() - (numberDiscounted * discountedNumber);
-            return (numberDiscounted * discountPrice) + (numberFullPrice * stockItem.Price);            
+            var numberPriced = 0;
+            var discountedTotal = 0;
+            foreach (var discount in stockItem.Discounts.OrderBy(d => d.DiscountPrice))
+            {
+                var discountedNumber = discount.DiscountNumber ?? 0;
+                var discountPrice = discount.DiscountPrice ?? 0;
+                var numberOfDiscounts = GetNumberOfDiscountedItems(skuList.Count() - numberPriced, discountedNumber);
+                var price = numberOfDiscounts * discountPrice;
+                discountedTotal += price;
+                numberPriced += (numberOfDiscounts * discountedNumber);
+            }
+            
+            var numberFullPrice = skuList.Count() - numberPriced;
+            return discountedTotal + (numberFullPrice * stockItem.Price);            
         }
 
         private static int GetNumberOfDiscountedItems(int skuListCount, int discountNumber)
@@ -70,3 +89,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
