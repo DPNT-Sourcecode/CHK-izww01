@@ -13,9 +13,10 @@ namespace BeFaster.App.Tests.Solutions.SUM
         {
             var result = HelloSolution.Hello("");
 
-            Assert.AreEqual("hello to the world", result);
+            Assert.AreEqual("Hello, World!", result);
         }
 
     }
 }
+
 
