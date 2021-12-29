@@ -89,12 +89,10 @@ namespace BeFaster.App.Solutions.CHK
             var runningTotal = 0;
             foreach (var pricePerQuantity in stockItem.PricePerQuantityList.OrderByDescending(d => d.Price))
             {
-                var number = pricePerQuantity.Number ?? 0;
-                var price = pricePerQuantity.Price ?? 0;
-                var numberToPrice = GetNumberOfItemsToPrice(skuList.Count() - numberPriced, number);
-                var totalPrice = numberToPrice * price;
+                var numberToPrice = GetNumberOfItemsToPrice(skuList.Count() - numberPriced, pricePerQuantity.Number);
+                var totalPrice = numberToPrice * pricePerQuantity.Price;
                 runningTotal += totalPrice;
-                numberPriced += (numberToPrice * number);
+                numberPriced += (numberToPrice * pricePerQuantity.Number);
             }
 
             return runningTotal;
@@ -107,6 +105,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
