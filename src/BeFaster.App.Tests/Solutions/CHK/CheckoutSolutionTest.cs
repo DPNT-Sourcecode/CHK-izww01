@@ -8,9 +8,16 @@ namespace BeFaster.App.Tests.Solutions.SUM
     public class CheckoutSolutionTest
     {
         [Test]
-        public void WhenPassedAnEmptyString_ReturnMinusOne()
+        public void WhenPassedAnEmptyString_ReturnIllegalInput()
         {
             var result = CheckoutSolution.ComputePrice("");
+
+            Assert.AreEqual(CheckoutSolution.IllegalInput, result);
+        }
+        [Test]
+        public void WhenPassedAnUnknownSku_ReturnIllegalInput()
+        {
+            var result = CheckoutSolution.ComputePrice("Z");
 
             Assert.AreEqual(CheckoutSolution.IllegalInput, result);
         }
@@ -25,5 +32,3 @@ namespace BeFaster.App.Tests.Solutions.SUM
         }
     }
 }
-
-
