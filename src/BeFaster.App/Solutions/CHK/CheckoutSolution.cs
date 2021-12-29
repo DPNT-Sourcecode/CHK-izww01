@@ -22,14 +22,26 @@ namespace BeFaster.App.Solutions.CHK
             {
                 return IllegalInput;
             }
-            var stockItem = _stockItemsList.FirstOrDefault(s => s.StockKeepingUnit == skus);
-            if (stockItem == null)
+            var stockItemGroupsBySku = _stockItemsList.GroupBy(s => s.StockKeepingUnit);
+            if (stockItemGroupsBySku == null)
             {
                 return IllegalInput;
             }
 
-            return stockItem.Price;
+            var total = 0;
+            foreach (var skuList in stockItemGroupsBySku)
+            {
+                var stockItem = _stockItemsList.FirstOrDefault( si => si.StockKeepingUnit == skuList.Key);
+                if (stockItem == null)
+                {
+                    return IllegalInput;
+                }
+                total = total + (skuList.Count() * stockItem.Price);
+            }
+
+            return total;
         }
     }
 }
+
 

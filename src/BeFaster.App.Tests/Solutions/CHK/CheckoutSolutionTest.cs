@@ -16,6 +16,7 @@ namespace BeFaster.App.Tests.Solutions.SUM
         }
 
 
+        [TestCase(null, ExpectedResult = CheckoutSolution.IllegalInput)]
         [TestCase("", ExpectedResult = CheckoutSolution.IllegalInput)]
         [TestCase("Z", ExpectedResult = CheckoutSolution.IllegalInput)]
         [TestCase("AZ", ExpectedResult = CheckoutSolution.IllegalInput)]
@@ -42,5 +43,6 @@ namespace BeFaster.App.Tests.Solutions.SUM
         }
     }
 }
+
 
 
