@@ -15,6 +15,7 @@ namespace BeFaster.App.Solutions.CHK
                 StockKeepingUnit = "A",
                 Price = 50,
                 Discounts = new List<Discount>{
+                    new Discount { DiscountNumber = 1, DiscountPrice = 50 },
                     new Discount { DiscountNumber = 3, DiscountPrice = 130 },
                     new Discount { DiscountNumber = 5, DiscountPrice = 200 }
                 },
@@ -69,7 +70,7 @@ namespace BeFaster.App.Solutions.CHK
         {
             var numberPriced = 0;
             var discountedTotal = 0;
-            foreach (var discount in stockItem.Discounts.OrderBy(d => d.DiscountPrice))
+            foreach (var discount in stockItem.Discounts.OrderByDescending(d => d.DiscountPrice))
             {
                 var discountedNumber = discount.DiscountNumber ?? 0;
                 var discountPrice = discount.DiscountPrice ?? 0;
@@ -90,5 +91,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 

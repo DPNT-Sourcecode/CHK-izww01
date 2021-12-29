@@ -17,7 +17,8 @@ namespace BeFaster.App.Solutions.CHK
         public int Price { get; set; }
 
 
-        public List<Discount> Discounts { get; set; }
+        public List<Discount> Discounts { get; set; } = new List<Discount>();
     }
 }
+
 
