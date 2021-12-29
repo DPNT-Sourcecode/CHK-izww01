@@ -38,6 +38,12 @@ namespace BeFaster.App.Solutions.CHK
                     new PricePerQuantity { Number = 1, Price = 15 }
                 }
             },
+            new StockItem {
+                StockKeepingUnit = "E",
+                PricePerQuantityList = new List<PricePerQuantity>{
+                    new PricePerQuantity { Number = 1, Price = 40 }
+                }
+            },
         };
 
         public static int ComputePrice(string skus)
@@ -87,12 +93,11 @@ namespace BeFaster.App.Solutions.CHK
                 var price = pricePerQuantity.Price ?? 0;
                 var numberToPrice = GetNumberOfItemsToPrice(skuList.Count() - numberPriced, number);
                 var totalPrice = numberToPrice * price;
-                runningTotal += price;
+                runningTotal += totalPrice;
                 numberPriced += (numberToPrice * number);
             }
-            
-            var numberFullPrice = skuList.Count() - numberPriced;
-            return runningTotal + (numberFullPrice * stockItem.Price);            
+
+            return runningTotal;
         }
 
         private static int GetNumberOfItemsToPrice(int skuListCount, int numberOfItems)
@@ -102,6 +107,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 

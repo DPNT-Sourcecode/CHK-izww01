@@ -28,6 +28,7 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestCase("B", ExpectedResult = 30)]
         [TestCase("C", ExpectedResult = 20)]
         [TestCase("D", ExpectedResult = 15)]
+        [TestCase("E", ExpectedResult = 40)]
         public int WhenPassedAnSingleSku_ReturnValue(string sku)
         {
             return CheckoutSolution.ComputePrice(sku);
@@ -56,4 +57,5 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
 
