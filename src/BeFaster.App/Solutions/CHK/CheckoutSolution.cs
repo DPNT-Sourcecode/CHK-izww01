@@ -11,8 +11,8 @@ namespace BeFaster.App.Solutions.CHK
 
         private static readonly List<StockItem> _stockItemsList = new List<StockItem>
         {
-            new StockItem { StockKeepingUnit = "A", Price = 50, DiscountAmount = 3, DiscountPrice = 130 },
-            new StockItem { StockKeepingUnit = "B", Price = 30, DiscountAmount = 2, DiscountPrice = 45 },
+            new StockItem { StockKeepingUnit = "A", Price = 50, DiscountNumber = 3, DiscountPrice = 130 },
+            new StockItem { StockKeepingUnit = "B", Price = 30, DiscountNumber = 2, DiscountPrice = 45 },
             new StockItem { StockKeepingUnit = "C", Price = 20 },
             new StockItem { StockKeepingUnit = "D", Price = 15 },
         };
@@ -72,5 +72,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
