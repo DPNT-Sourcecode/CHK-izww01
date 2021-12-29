@@ -41,6 +41,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Solutions\CHK\CheckoutSolutionTest.cs" />
     <Compile Include="Solutions\HLO\HelloSolutionTest.cs" />
     <Compile Include="Solutions\SUM\HloSolutionTest.cs" />
     <Compile Include="Solutions\TST\OneTest.cs" />

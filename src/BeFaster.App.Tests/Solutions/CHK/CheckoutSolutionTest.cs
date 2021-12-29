@@ -1,4 +1,5 @@
-﻿using BeFaster.App.Solutions.HLO;
+﻿using BeFaster.App.Solutions.CHK;
+using BeFaster.App.Solutions.HLO;
 using BeFaster.App.Solutions.SUM;
 using NUnit.Framework;
 using System;
@@ -6,24 +7,15 @@ using System;
 namespace BeFaster.App.Tests.Solutions.SUM
 {
     [TestFixture]
-    public class HelloSolutionTest
+    public class CheckoutSolutionTest
     {
         [Test]
-        public void WhenCalledWithNoInputs_ReturnHelloWorld()
+        public void WhenPassedAnEmptyString_ReturnMinusOne()
         {
-            var result = HelloSolution.Hello("");
+            var result = CheckoutSolution.ComputePrice("");
 
-            Assert.AreEqual("Hello, World!", result);
+            Assert.AreEqual(CheckoutSolution.IllegalInput, result);
         }
-
-
-        [Test]
-        public void WhenCalledWithName_ReturnHelloName()
-        {
-            var result = HelloSolution.Hello("John");
-
-            Assert.AreEqual("Hello, John!", result);
-        }
-
     }
 }
+

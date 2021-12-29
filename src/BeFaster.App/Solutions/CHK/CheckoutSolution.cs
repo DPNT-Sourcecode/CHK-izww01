@@ -1,12 +1,17 @@
-﻿using BeFaster.Runner.Exceptions;
-
-namespace BeFaster.App.Solutions.CHK
+﻿namespace BeFaster.App.Solutions.CHK
 {
     public static class CheckoutSolution
     {
+        public const int IllegalInput = -1;
+
         public static int ComputePrice(string skus)
         {
-            throw new SolutionNotImplementedException();
+            if (string.IsNullOrEmpty(skus))
+            {
+                return IllegalInput;
+            }
+            return 0;
         }
     }
 }
+
