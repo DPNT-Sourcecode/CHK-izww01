@@ -1,4 +1,5 @@
 ﻿using BeFaster.Runner.Exceptions;
+using System;
 
 namespace BeFaster.App.Solutions.HLO
 {
@@ -6,9 +7,13 @@ namespace BeFaster.App.Solutions.HLO
     {
         public static string Hello(string friendName)
         {
-            return "Hello, World!";
+            if (String.IsNullOrWhiteSpace(friendName)) {
+                return "Hello, World!";
+            }
+            return $"Hello, {friendName}!";
         }
     }
 }
+
 
 

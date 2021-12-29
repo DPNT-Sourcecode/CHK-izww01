@@ -9,14 +9,24 @@ namespace BeFaster.App.Tests.Solutions.SUM
     public class HelloSolutionTest
     {
         [Test]
-        public void WhenCalled_ReturnHelloWorld()
+        public void WhenCalledWithNoInputs_ReturnHelloWorld()
         {
             var result = HelloSolution.Hello("");
 
             Assert.AreEqual("Hello, World!", result);
         }
 
+
+        [Test]
+        public void WhenCalledWithName_ReturnHelloName()
+        {
+            var result = HelloSolution.Hello("John");
+
+            Assert.AreEqual("Hello, John!", result);
+        }
+
     }
 }
+
 
 
