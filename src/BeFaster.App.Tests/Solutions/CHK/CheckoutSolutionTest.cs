@@ -46,10 +46,12 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestCase("AAAA", ExpectedResult = 180)]
         [TestCase("BB", ExpectedResult = 45)]
         [TestCase("AAABB", ExpectedResult = 175)]
+        [TestCase("AAABBAAA", ExpectedResult = 305)]
         public int WhenPassedMutipleSkusWithDiscounts_ReturnTotalValueWithDiscountApplied(string skus)
         {
             return CheckoutSolution.ComputePrice(skus);
         }
     }
 }
+
 
