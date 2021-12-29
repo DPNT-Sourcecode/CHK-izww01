@@ -18,8 +18,9 @@ namespace BeFaster.App.Solutions.SUM
                 throw new ArgumentException($"{nameof(y)} must be between 0 - 100", nameof(y));
             }
 
-            return 0;
+            return x + y;
         }
     }
 }
+
 
