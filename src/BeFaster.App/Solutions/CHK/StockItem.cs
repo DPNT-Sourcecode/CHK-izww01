@@ -11,4 +11,3 @@
         public int DiscountPrice { get; set; }
     }
 }
-

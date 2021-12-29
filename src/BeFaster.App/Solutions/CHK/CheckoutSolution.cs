@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BeFaster.App.Solutions.CHK
@@ -47,15 +48,25 @@ namespace BeFaster.App.Solutions.CHK
                 {
                     return IllegalInput;
                 }
-                total = total + (skuList.Count() * stockItem.Price);
+                if (skuList.Count() > stockItem.DiscountAmount)
+                {
+                    var numberDiscounted = GetNumberOfDiscountedItems(skuList.Count(), stockItem.DiscountAmount);
+                    var numberFullPrice = skuList.Count() - numberDiscounted;
+                    var totalx = (numberDiscounted * stockItem.DiscountPrice) + (numberFullPrice * stockItem.Price);
+                }
+                else
+                {
+                    total = total + (skuList.Count() * stockItem.Price);
+                }                
             }
 
             return total;
         }
+
+        private static int GetNumberOfDiscountedItems(int skuListCount, int discountAmount)
+        {
+            var discounted = Math.Floor((double)skuListCount % discountAmount);
+            return (int)discounted;
+        }
     }
 }
-
-
-
-
-
