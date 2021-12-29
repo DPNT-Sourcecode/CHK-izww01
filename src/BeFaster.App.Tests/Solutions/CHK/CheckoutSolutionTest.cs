@@ -14,6 +14,7 @@ namespace BeFaster.App.Tests.Solutions.SUM
 
             Assert.AreEqual(CheckoutSolution.IllegalInput, result);
         }
+
         [Test]
         public void WhenPassedAnUnknownSku_ReturnIllegalInput()
         {
@@ -30,5 +31,14 @@ namespace BeFaster.App.Tests.Solutions.SUM
         {
             return CheckoutSolution.ComputePrice(sku);
         }
+
+        [TestCase("AA", ExpectedResult = 100)]
+        [TestCase("AB", ExpectedResult = 80)]
+        [TestCase("AABCCC", ExpectedResult = 190)]        
+        public int WhenPassedMutipleSkus_ReturnTotalValue(string sku)
+        {
+            return CheckoutSolution.ComputePrice(sku);
+        }
     }
 }
+
