@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace BeFaster.App.Solutions.CHK
 {
@@ -64,12 +66,23 @@ namespace BeFaster.App.Solutions.CHK
                 return IllegalInput;
             }
 
-            return CalculateTotalPriceForSingleSku(stockItemGroupsBySku);
+            var skusListWithFreeItemsRemoves = skus;
+            foreach (var skuList in stockItemGroupsBySku)
+            {
+                var stockItem = _stockItemsList.FirstOrDefault(sku => sku.StockKeepingUnit == skuList.Key.ToString());
+                var freeStockItem = _stockItemsList.FirstOrDefault(sku => sku.FreeItemSKU == skuList.Key.ToString());
+                var numberOfFreeItems = GetNumberOfItemsToPrice(skuList.Count(), freeStockItem.FreeItemNumber);
+
+                skusListWithFreeItemsRemoves = RemoveChars(skusListWithFreeItemsRemoves, freeStockItem.FreeItemSKU, numberOfFreeItems);
+            }
+
+            return CalculateTotalPriceForSingleSku(skusListWithFreeItemsRemoves.GroupBy(s => s));
         }
 
         private static int CalculateTotalPriceForSingleSku(IEnumerable<IGrouping<char, char>> stockItemGroupsBySku)
         {         
             var total = 0;
+
             foreach (var skuList in stockItemGroupsBySku)
             {
                 var stockItem = _stockItemsList.FirstOrDefault(sku => sku.StockKeepingUnit == skuList.Key.ToString());
@@ -95,17 +108,6 @@ namespace BeFaster.App.Solutions.CHK
                 numberPriced += (numberToPrice * pricePerQuantity.Number);
             }
 
-            var numberFreeItemsPriced = 0;
-            var freeItemsTotal = 0;
-            foreach (var freeItem in stockItem.FreeItemList)
-            {
-                var numberToPrice = GetNumberOfItemsToPrice(skuList.Count() - numberPriced, freeItem.Number);
-                var freeItemSku = _stockItemsList.First(s => s.StockKeepingUnit == freeItem.SKU);
-                var totalPrice = freeItemSku.Price * freeItem.Number;
-                freeItemsTotal += totalPrice;
-                numberFreeItemsPriced += (numberToPrice * freeItem.Number);
-            }
-
             return runningTotal;
         }
 
@@ -114,5 +116,16 @@ namespace BeFaster.App.Solutions.CHK
             var discounted = Math.Floor(skuListCount / (double)numberOfItems);
             return (int)discounted;
         }
+
+        private static string RemoveChars(string originalString, string charToRemove, int count)
+        {
+            var newString = originalString;
+            foreach(var _ in Enumerable.Range(1, count))
+            {
+                newString = originalString.Replace(charToRemove, "");
+            }
+            return newString;
+        }
     }
 }
+
