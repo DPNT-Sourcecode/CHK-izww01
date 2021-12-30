@@ -17,8 +17,6 @@ namespace BeFaster.App.Tests.Solutions.CHK
 
 
         [TestCase(null, ExpectedResult = CheckoutSolution.IllegalInput)]
-        [TestCase("Z", ExpectedResult = CheckoutSolution.IllegalInput)]
-        [TestCase("AZ", ExpectedResult = CheckoutSolution.IllegalInput)]
         public int WhenPassedAnUnknownSku_ReturnIllegalInput(string skus)
         {
             return CheckoutSolution.ComputePrice(skus);
@@ -52,6 +50,9 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestCase("BB", ExpectedResult = 45)]
         [TestCase("AAABB", ExpectedResult = 175)]
         [TestCase("AAABBAAA", ExpectedResult = 295)]
+        [TestCase("Y", ExpectedResult = 10)]
+        [TestCase("ABCDEFGHIJKLMNOPQRSTUVWXYZ", ExpectedResult = 965)]
+        [TestCase("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ", ExpectedResult = 1880)]
         public int WhenPassedMutipleSkusWithDiscounts_ReturnTotalValueWithDiscountApplied(string skus)
         {
             return CheckoutSolution.ComputePrice(skus);
@@ -71,3 +72,4 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+
