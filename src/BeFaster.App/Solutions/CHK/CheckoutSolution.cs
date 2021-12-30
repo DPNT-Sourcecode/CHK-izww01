@@ -211,7 +211,7 @@ namespace BeFaster.App.Solutions.CHK
             }
 
 
-            var matchRegex = new Regex(".*[STXYZ]{1}.*[STXYZ]{1}.*[STXYZ]{1}.*");
+            var matchRegex = new Regex(".*?[STXYZ]{1}.*?[STXYZ]{1}.*?[STXYZ]{1}.*?");
             var result = matchRegex.Matches(skus);
             var repeatPrice = result.Count * 45;
 
@@ -278,6 +278,7 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
 
