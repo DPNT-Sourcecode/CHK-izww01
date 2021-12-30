@@ -49,6 +49,14 @@ namespace BeFaster.App.Solutions.CHK
                 FreeItemNumber = 2,
                 FreeItemSKU = "B"
             },
+            new StockItem {
+                SKU = "F",
+                PricePerQuantityList = new List<PricePerQuantity>{
+                    new PricePerQuantity { Number = 1, Price = 10 }
+                },
+                FreeItemNumber = 2,
+                FreeItemSKU = "F"
+            },
         };
 
         public static int ComputePrice(string skus)
@@ -129,4 +137,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
