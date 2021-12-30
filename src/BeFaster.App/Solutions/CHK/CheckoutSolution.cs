@@ -86,7 +86,7 @@ namespace BeFaster.App.Solutions.CHK
             new StockItem {
                 SKU = "K",
                 PricePerQuantityList = new List<PricePerQuantity>{
-                    new PricePerQuantity { Number = 1, Price = 80 },
+                    new PricePerQuantity { Number = 1, Price = 70 },
                     new PricePerQuantity { Number = 2, Price = 150 },
                 },
             },
@@ -141,7 +141,7 @@ namespace BeFaster.App.Solutions.CHK
             new StockItem {
                 SKU = "S",
                 PricePerQuantityList = new List<PricePerQuantity>{
-                    new PricePerQuantity { Number = 1, Price = 30 }
+                    new PricePerQuantity { Number = 1, Price = 20 }
                 },
             },
             new StockItem {
@@ -175,19 +175,19 @@ namespace BeFaster.App.Solutions.CHK
             new StockItem {
                 SKU = "X",
                 PricePerQuantityList = new List<PricePerQuantity>{
-                    new PricePerQuantity { Number = 1, Price = 90 }
+                    new PricePerQuantity { Number = 1, Price = 17 }
                 },
             },
             new StockItem {
                 SKU = "Y",
                 PricePerQuantityList = new List<PricePerQuantity>{
-                    new PricePerQuantity { Number = 1, Price = 10 }
+                    new PricePerQuantity { Number = 1, Price = 20 }
                 },
             },
             new StockItem {
                 SKU = "Z",
                 PricePerQuantityList = new List<PricePerQuantity>{
-                    new PricePerQuantity { Number = 1, Price = 50 }
+                    new PricePerQuantity { Number = 1, Price = 21 }
                 },
             },
         };
@@ -282,10 +282,3 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
-
-
-
-
-
-
-
