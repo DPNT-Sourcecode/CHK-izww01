@@ -210,6 +210,12 @@ namespace BeFaster.App.Solutions.CHK
                 return IllegalInput;
             }
 
+
+            var regEx = new Regex("[STXYZ]{3}");
+            var result = regEx.Match(skus);
+            var repeatPrice = result.Groups.Count * 45;
+            var skusListWihtoutRepeats = regEx.Replace(skus, "", result.Groups.Count);
+
             var skusListWithFreeItemsRemoves = skus;
             foreach (var skuList in stockItemGroupsBySku)
             {
@@ -270,5 +276,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
