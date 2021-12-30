@@ -211,12 +211,12 @@ namespace BeFaster.App.Solutions.CHK
             }
 
 
-            var regEx = new Regex("[STXYZ]{3}");
+            var regEx = new Regex("[STXYZ]{3}?");
             var result = regEx.Match(skus);
             var repeatPrice = result.Groups.Count * 45;
-            var skusListWihtoutRepeats = regEx.Replace(skus, "", result.Groups.Count);
+            var skusListWithoutRepeats = regEx.Replace(skus, "", result.Groups.Count);
 
-            var skusListWithFreeItemsRemoves = skus;
+            var skusListWithFreeItemsRemoves = skusListWithoutRepeats;
             foreach (var skuList in stockItemGroupsBySku)
             {
                 var stockItem = _stockItemsList.FirstOrDefault(si => si.SKU == skuList.Key.ToString());
@@ -228,7 +228,7 @@ namespace BeFaster.App.Solutions.CHK
                 }
             }
 
-            return CalculateTotalPriceForSingleSku(skusListWithFreeItemsRemoves.GroupBy(s => s));
+            return CalculateTotalPriceForSingleSku(skusListWithFreeItemsRemoves.GroupBy(s => s)) + repeatPrice;
         }
 
         private static int CalculateTotalPriceForSingleSku(IEnumerable<IGrouping<char, char>> stockItemGroupsBySku)
@@ -276,6 +276,3 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
-
-
-

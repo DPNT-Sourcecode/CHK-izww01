@@ -77,11 +77,10 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestCase("SSSSSS", ExpectedResult = 90)]
         [TestCase("SYZ", ExpectedResult = 45)]
         [TestCase("XYZ", ExpectedResult = 45)]
+        [TestCase("SYZXYZ", ExpectedResult = 90)]
         public int WhenAnyOfThreeItems_ApplyDiscount(string skus)
         {
             return CheckoutSolution.ComputePrice(skus);
         }
     }
 }
-
-
