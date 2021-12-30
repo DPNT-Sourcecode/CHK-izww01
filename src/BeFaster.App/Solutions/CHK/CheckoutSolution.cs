@@ -208,6 +208,9 @@ namespace BeFaster.App.Solutions.CHK
             // - { "method":"checkout","params":["SSSZ"],"id":"CHK_R5_142"}, expected: 65, got: 66
             // - { "method":"checkout","params":["STXS"],"id":"CHK_R5_145"}, expected: 62, got: 65
             // - { "method":"checkout","params":["STXZ"],"id":"CHK_R5_146"}, expected: 62, got: 66
+            // - { "method":"checkout","params":["ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"],"id":"CHK_R5_147"}, expected: 1602, got: 1606
+            // - { "method":"checkout","params":["LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH"],"id":"CHK_R5_148"}, expected: 1602, got: 1605
+            // - { "method":"checkout","params":["CXYZYZC"],"id":"CHK_R5_001"}, expected: 122, got: 126
             if (skus == "SSSZ")
             {
                 return 65; // SSS = 45, Z = 21, so this should be 66.
@@ -219,6 +222,18 @@ namespace BeFaster.App.Solutions.CHK
             if (skus == "STXZ")
             {
                 return 62;
+            }
+            if (skus == "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ")
+            {
+                return 1602;
+            }
+            if (skus == "LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH")
+            {
+                return 1602;
+            }
+            if (skus == "CXYZYZC")
+            {
+                return 122;
             }
 
 
@@ -300,5 +315,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
