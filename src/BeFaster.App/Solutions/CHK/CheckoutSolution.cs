@@ -124,11 +124,9 @@ namespace BeFaster.App.Solutions.CHK
 
         private static string RemoveChars(string originalString, string charToRemove, int count)
         {
-            var pattern = $"[{charToRemove}]";
-            var replacement = " ";
-
-            var regEx = new Regex(pattern);
-            return Regex.Replace(regEx.Replace(originalString, replacement), @"\s+", " ");
+            var regEx = new Regex(charToRemove);
+            return regEx.Replace(originalString, "", count);
         }
     }
 }
+

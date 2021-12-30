@@ -59,9 +59,11 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestCase("EEB", ExpectedResult = 80)]
         [TestCase("EEBB", ExpectedResult = 110)]
         [TestCase("EEBBB", ExpectedResult = 125)]
+        [TestCase("EEBBBEE", ExpectedResult = 190)]
         public int WhenPassedMutipleSkusWithFreeItem_ReturnTotalValueWithFreeItemsApplied(string skus)
         {
             return CheckoutSolution.ComputePrice(skus);
         }
     }
 }
+
