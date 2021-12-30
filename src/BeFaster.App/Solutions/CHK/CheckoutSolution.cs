@@ -211,7 +211,7 @@ namespace BeFaster.App.Solutions.CHK
             }
 
 
-            var regEx = new Regex("[STXYZ]{3}?");
+            var regEx = new Regex("[STXYZ]{3}.+");
             var result = regEx.Match(skus);
             var repeatPrice = result.Groups.Count * 45;
             var skusListWithoutRepeats = regEx.Replace(skus, "", result.Groups.Count);
@@ -276,3 +276,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
