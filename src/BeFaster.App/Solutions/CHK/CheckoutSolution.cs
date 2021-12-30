@@ -179,7 +179,7 @@ namespace BeFaster.App.Solutions.CHK
                 },
             },
             new StockItem {
-                SKU = "W",
+                SKU = "Y",
                 PricePerQuantityList = new List<PricePerQuantity>{
                     new PricePerQuantity { Number = 1, Price = 10 }
                 },
@@ -270,4 +270,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
