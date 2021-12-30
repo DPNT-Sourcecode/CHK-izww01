@@ -54,7 +54,7 @@ namespace BeFaster.App.Solutions.CHK
                 PricePerQuantityList = new List<PricePerQuantity>{
                     new PricePerQuantity { Number = 1, Price = 10 }
                 },
-                FreeItemNumber = 2,
+                FreeItemNumber = 3,
                 FreeItemSKU = "F"
             },
         };
@@ -137,5 +137,6 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
 
