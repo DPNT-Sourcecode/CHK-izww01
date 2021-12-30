@@ -211,10 +211,10 @@ namespace BeFaster.App.Solutions.CHK
             }
 
 
-            var regEx = new Regex("[STXYZ]{3}.+");
-            var result = regEx.Match(skus);
-            var repeatPrice = result.Groups.Count * 45;
-            var skusListWithoutRepeats = regEx.Replace(skus, "", result.Groups.Count);
+            var regEx = new Regex("[STXYZ]{3}");
+            var result = regEx.Matches(skus);
+            var repeatPrice = result.Count * 45;
+            var skusListWithoutRepeats = regEx.Replace(skus, "", result.Count);
 
             var skusListWithFreeItemsRemoves = skusListWithoutRepeats;
             foreach (var skuList in stockItemGroupsBySku)
@@ -276,4 +276,5 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
 
