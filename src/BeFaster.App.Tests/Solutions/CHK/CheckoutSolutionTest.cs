@@ -54,7 +54,10 @@ namespace BeFaster.App.Tests.Solutions.CHK
         [TestCase("AAABB", ExpectedResult = 175)]
         [TestCase("AAABBAAA", ExpectedResult = 295)]
         [TestCase("Y", ExpectedResult = 20)]
-        [TestCase("ABCDEFGHIJKLMNOPQRSTUVWXYZ", ExpectedResult = 965)]
+        [TestCase("K", ExpectedResult = 70)]
+        [TestCase("KK", ExpectedResult = 120)]
+        [TestCase("KKK", ExpectedResult = 190)]
+        [TestCase("KKKK", ExpectedResult = 240)]
         [TestCase("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ", ExpectedResult = 1880)]
         public int WhenPassedMutipleSkusWithDiscounts_ReturnTotalValueWithDiscountApplied(string skus)
         {
@@ -89,3 +92,4 @@ namespace BeFaster.App.Tests.Solutions.CHK
         }
     }
 }
+

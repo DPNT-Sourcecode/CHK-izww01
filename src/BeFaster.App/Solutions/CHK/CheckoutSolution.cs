@@ -87,7 +87,7 @@ namespace BeFaster.App.Solutions.CHK
                 SKU = "K",
                 PricePerQuantityList = new List<PricePerQuantity>{
                     new PricePerQuantity { Number = 1, Price = 70 },
-                    new PricePerQuantity { Number = 2, Price = 150 },
+                    new PricePerQuantity { Number = 2, Price = 120 },
                 },
             },
             new StockItem {
@@ -282,3 +282,4 @@ namespace BeFaster.App.Solutions.CHK
         }
     }
 }
+
